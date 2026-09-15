@@ -3,240 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern User Dashboard</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Fleet Health Overview Dashboard</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Sidebar Styles */
+        aside {
+            width: 240px;
+            background-color: #114b5f;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            color: #f7931e;
+            font-weight: 600;
+        }
+
+        /* Main Content Styles */
+        main {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0b3c5d;
+            margin-bottom: 25px;
+        }
+
+        /* Fleet Health Score Section */
+        .score-section {
+            margin-bottom: 25px;
+        }
+
+        .score-label {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .score-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar-bg {
+            flex: 1;
+            max-width: 650px;
+            height: 24px;
+            background-color: #e5edf1;
+            border-radius: 4px;
+            overflow: hidden;
+            padding: 3px;
+        }
+
+        .progress-bar-fill {
+            width: 92%;
+            height: 100%;
+            background-color: #2b7a0b;
+            border-radius: 2px;
+        }
+
+        .score-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2b7a0b;
+        }
+
+        /* Chart Box */
+        .chart-box {
+            background: #ffffff;
+            border: 1px solid #d1dede;
+            border-radius: 4px;
+            padding: 15px 20px;
+            height: 160px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .chart-title {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* CSS-drawn line representation matching the trend line */
+        .chart-line {
+            width: 100%;
+            height: 80px;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .chart-line svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        /* Active Alerts Section */
+        h2 {
+            font-size: 18px;
+            color: #0b3c5d;
+            margin-bottom: 15px;
+        }
+
+        .alert-card {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .alert-id {
+            font-weight: 700;
+            width: 100px;
+        }
+
+        .alert-msg {
+            flex: 1;
+        }
+
+        /* Alert Variants */
+        .alert-red {
+            background-color: #fdf2f0;
+            border: 1px solid #f9d8d4;
+        }
+        .alert-red .alert-id {
+            color: #b33912;
+        }
+        .alert-red .alert-msg {
+            color: #b33912;
+        }
+
+        .alert-yellow {
+            background-color: #fcf8e8;
+            border: 1px solid #f5e9bd;
+        }
+        .alert-yellow .alert-id {
+            color: #b38600;
+        }
+        .alert-yellow .alert-msg {
+            color: #9c7500;
+        }
+
+        .alert-green {
+            background-color: #edf7ed;
+            border: 1px solid #d4edda;
+        }
+        .alert-green .alert-id {
+            color: #1e7e34;
+        }
+        .alert-green .alert-msg {
+            color: #155724;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+<body>
 
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="bg-slate-900 text-slate-300 w-64 space-y-6 py-7 px-4 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-30 flex flex-col justify-between">
-        <div>
-            <!-- Logo / Brand -->
-            <div class="flex items-center space-x-3 px-2 mb-8">
-                <div class="bg-indigo-600 p-2 rounded-lg text-white">
-                    <i class="fa-solid fa-chart-pie text-xl"></i>
-                </div>
-                <span class="text-white text-xl font-bold tracking-wide">DashStack</span>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="space-y-1">
-                <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg bg-indigo-600 text-white font-medium transition">
-                    <i class="fa-solid fa-house w-5"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">
-                    <i class="fa-solid fa-user w-5"></i>
-                    <span>Profile</span>
-                </a>
-                <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">
-                    <i class="fa-solid fa-wallet w-5"></i>
-                    <span>Billing</span>
-                </a>
-                <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">
-                    <i class="fa-solid fa-chart-line w-5"></i>
-                    <span>Analytics</span>
-                </a>
-                <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">
-                    <i class="fa-solid fa-gear w-5"></i>
-                    <span>Settings</span>
-                </a>
-            </nav>
-        </div>
-
-        <!-- Sidebar Footer / Logout -->
-        <div>
-            <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-red-600/20 hover:text-red-400 text-slate-400 transition">
-                <i class="fa-solid fa-right-from-bracket w-5"></i>
-                <span>Logout</span>
-            </a>
-        </div>
+    <!-- Sidebar Navigation -->
+    <aside>
+        <a href="#" class="nav-item active">Overview</a>
+        <a href="#" class="nav-item">Units</a>
+        <a href="#" class="nav-item">Alerts</a>
+        <a href="#" class="nav-item">Settings</a>
     </aside>
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <div class="flex-1 flex flex-col overflow-hidden">
-        
-        <!-- TOP HEADER -->
-        <header class="bg-white shadow-sm z-20 flex items-center justify-between px-6 py-4">
-            <!-- Left Header: Mobile Toggle & Title -->
-            <div class="flex items-center space-x-4">
-                <button id="menu-btn" class="text-gray-500 focus:outline-none md:hidden">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-                <h1 class="text-xl font-semibold text-gray-800">Dashboard Overview</h1>
+    <!-- Main Dashboard Area -->
+    <main>
+        <h1>Fleet Health Overview</h1>
+
+        <!-- Fleet Health Score -->
+        <div class="score-section">
+            <div class="score-label">Fleet Health Score</div>
+            <div class="score-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="score-value">92 / 100</div>
             </div>
+        </div>
 
-            <!-- Right Header: Search, Notifications, Profile -->
-            <div class="flex items-center space-x-5">
-                <!-- Search Box -->
-                <div class="hidden md:flex items-center bg-gray-100 rounded-lg px-3 py-2 w-64">
-                    <i class="fa-solid fa-search text-gray-400 mr-2"></i>
-                    <input type="text" placeholder="Search anything..." class="bg-transparent text-sm focus:outline-none w-full">
-                </div>
-
-                <!-- Notifications -->
-                <button class="relative text-gray-500 hover:text-gray-700 focus:outline-none">
-                    <i class="fa-regular fa-bell text-xl"></i>
-                    <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-                </button>
-
-                <!-- User Profile Dropdown / Info -->
-                <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
-                    <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="User Avatar">
-                    <div class="hidden sm:block text-left">
-                        <span class="block text-sm font-medium text-gray-700">Sarah Jenkins</span>
-                        <span class="block text-xs text-gray-500">Free Tier</span>
-                    </div>
-                </div>
+        <!-- Superheat Trend Chart Box -->
+        <div class="chart-box">
+            <div class="chart-title">Superheat trend, Unit CU-114 (last 14 days)</div>
+            <div class="chart-line">
+                <svg viewBox="0 0 600 50" preserveAspectRatio="none">
+                    <!-- Smooth zigzag trending down line mimicking the chart -->
+                    <polyline fill="none" stroke="#ff6b4a" stroke-width="2.5" 
+                        points="0,10 50,15 100,12 150,18 200,22 250,23 300,26 350,28 400,30 450,32 500,33 550,36 600,38" />
+                </svg>
             </div>
-        </header>
+        </div>
 
-        <!-- DASHBOARD BODY CONTENT -->
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
-            
-            <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-6 text-white mb-6 shadow-md flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold mb-1">Welcome back, Sarah! 👋</h2>
-                    <p class="text-indigo-100 text-sm">Here is what's happening with your account today.</p>
-                </div>
-                <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium text-sm shadow hover:bg-indigo-50 transition hidden sm:block">
-                    Upgrade Plan
-                </button>
-            </div>
+        <!-- Active Alerts -->
+        <h2>Active Alerts</h2>
 
-            <!-- STATS CARDS GRID -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <!-- Card 1 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">Total Balance</p>
-                        <h3 class="text-2xl font-bold text-gray-800 mt-1">$24,500</h3>
-                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full mt-2 inline-block"><i class="fa-solid fa-arrow-up"></i> +12% this month</span>
-                    </div>
-                    <div class="bg-indigo-50 text-indigo-600 p-3 rounded-xl text-xl">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                </div>
+        <!-- Alert 1: Red -->
+        <div class="alert-card alert-red">
+            <div class="alert-id">CU-114</div>
+            <div class="alert-msg">Floodback risk, ~2 days lead time</div>
+        </div>
 
-                <!-- Card 2 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">Active Projects</p>
-                        <h3 class="text-2xl font-bold text-gray-800 mt-1">12</h3>
-                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full mt-2 inline-block"><i class="fa-solid fa-arrow-up"></i> +4 new</span>
-                    </div>
-                    <div class="bg-blue-50 text-blue-600 p-3 rounded-xl text-xl">
-                        <i class="fa-solid fa-folder-open"></i>
-                    </div>
-                </div>
+        <!-- Alert 2: Yellow -->
+        <div class="alert-card alert-yellow">
+            <div class="alert-id">CU-098</div>
+            <div class="alert-msg">Oil pressure drifting, monitor</div>
+        </div>
 
-                <!-- Card 3 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">Completed Tasks</p>
-                        <h3 class="text-2xl font-bold text-gray-800 mt-1">184</h3>
-                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full mt-2 inline-block"><i class="fa-solid fa-arrow-up"></i> +18%</span>
-                    </div>
-                    <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xl">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                </div>
+        <!-- Alert 3: Green -->
+        <div class="alert-card alert-green">
+            <div class="alert-id">CU-071</div>
+            <div class="alert-msg">Nominal, last checked 4h ago</div>
+        </div>
+    </main>
 
-                <!-- Card 4 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">Support Tickets</p>
-                        <h3 class="text-2xl font-bold text-gray-800 mt-1">2</h3>
-                        <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full mt-2 inline-block">Pending</span>
-                    </div>
-                    <div class="bg-amber-50 text-amber-600 p-3 rounded-xl text-xl">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RECENT ACTIVITY / TRANSACTIONS TABLE SECTION -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="p-6 border-b border-gray-100 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-gray-800">Recent Transactions</h3>
-                    <button class="text-sm text-indigo-600 font-medium hover:underline">View All</button>
-                </div>
-                
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-50 text-gray-400 text-xs uppercase tracking-wider">
-                                <th class="py-3 px-6 font-medium">Description</th>
-                                <th class="py-3 px-6 font-medium">Category</th>
-                                <th class="py-3 px-6 font-medium">Date</th>
-                                <th class="py-3 px-6 font-medium">Amount</th>
-                                <th class="py-3 px-6 font-medium">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100 text-sm">
-                            <tr class="hover:bg-gray-50/50 transition">
-                                <td class="py-4 px-6 font-medium text-gray-800 flex items-center space-x-3">
-                                    <div class="bg-indigo-50 text-indigo-600 p-2 rounded-lg"><i class="fa-solid fa-arrow-down"></i></div>
-                                    <span>Design System Pro Purchase</span>
-                                </td>
-                                <td class="py-4 px-6 text-gray-500">Software</td>
-                                <td class="py-4 px-6 text-gray-500">Sep 14, 2026</td>
-                                <td class="py-4 px-6 font-semibold text-gray-800">-$149.00</td>
-                                <td class="py-4 px-6">
-                                    <span class="bg-emerald-50 text-emerald-600 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50/50 transition">
-                                <td class="py-4 px-6 font-medium text-gray-800 flex items-center space-x-3">
-                                    <div class="bg-emerald-50 text-emerald-600 p-2 rounded-lg"><i class="fa-solid fa-arrow-up"></i></div>
-                                    <span>Client Deposit (Acme Corp)</span>
-                                </td>
-                                <td class="py-4 px-6 text-gray-500">Income</td>
-                                <td class="py-4 px-6 text-gray-500">Sep 12, 2026</td>
-                                <td class="py-4 px-6 font-semibold text-emerald-600">+$2,400.00</td>
-                                <td class="py-4 px-6">
-                                    <span class="bg-emerald-50 text-emerald-600 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50/50 transition">
-                                <td class="py-4 px-6 font-medium text-gray-800 flex items-center space-x-3">
-                                    <div class="bg-indigo-50 text-indigo-600 p-2 rounded-lg"><i class="fa-solid fa-arrow-down"></i></div>
-                                    <span>Cloud Hosting Subscription</span>
-                                </td>
-                                <td class="py-4 px-6 text-gray-500">Infrastructure</td>
-                                <td class="py-4 px-6 text-gray-500">Sep 10, 2026</td>
-                                <td class="py-4 px-6 font-semibold text-gray-800">-$45.00</td>
-                                <td class="py-4 px-6">
-                                    <span class="bg-amber-50 text-amber-600 text-xs font-medium px-2.5 py-1 rounded-full">Pending</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <!-- JavaScript for Mobile Sidebar Toggle -->
-    <script>
-        const btn = document.getElementById('menu-btn');
-        const sidebar = document.getElementById('sidebar');
-
-        btn.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-        });
-    </script>
 </body>
 </html>
