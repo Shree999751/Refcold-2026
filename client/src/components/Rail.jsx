@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Gauge as GaugeIcon, BellRing, FlaskConical, LineChart, Moon, Sun } from 'lucide-react';
+import { Gauge as GaugeIcon, BellRing, FlaskConical, LineChart, Moon, Sun, ExternalLink } from 'lucide-react';
 import { useFleet } from '../context/FleetContext.jsx';
 import { useTheme } from '../context/ThemeContext.jsx';
 import { fmtDate, fmtTime } from '../lib/format.js';
@@ -46,6 +46,17 @@ export default function Rail() {
         ))}
       </nav>
       <div className="rail-foot">
+        <a
+          href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rail-btn"
+          style={{ textDecoration: 'none' }}
+          title="Open REFCOLD 2026 Prototype in new tab"
+        >
+          <ExternalLink size={16} />
+          <span className="label">Live Prototype</span>
+        </a>
         {fleet && (
           <div className="clock" aria-live="off">
             <div className="clock-date">{fmtDate(fleet.simTime)}</div>
@@ -64,3 +75,4 @@ export default function Rail() {
     </aside>
   );
 }
+

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 import { useFleet } from '../context/FleetContext.jsx';
 import Gauge from '../components/Gauge.jsx';
 import Sparkline from '../components/Sparkline.jsx';
@@ -57,13 +58,68 @@ export default function Overview() {
   return (
     <div className="page">
       <header className="hero">
-        <h1 className="t-display">{h.title}</h1>
-        <div className="hero-meta">
-          <span>{units.length} compressors across {sites.length} sites</span>
-          <span>Random Forest scores every compressor each simulated hour</span>
-          <span>{fleet.storeMode === 'firebase' ? 'Records saved to Firebase' : 'Records kept in memory (Firebase not connected)'}</span>
+        <div className="hero-head-row">
+          <div>
+            <div className="prototype-badge-pill">
+              <i />
+              <span>REFCOLD India 2026 Prototype</span>
+            </div>
+            <h1 className="t-display">{h.title}</h1>
+            <div className="hero-meta">
+              <span>{units.length} compressors across {sites.length} sites</span>
+              <span>Random Forest scores every compressor each simulated hour</span>
+              <span>{fleet.storeMode === 'firebase' ? 'Records saved to Firebase' : 'Records kept in memory (Firebase not connected)'}</span>
+            </div>
+          </div>
+          <a
+            href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary hero-prototype-cta"
+            title="Open REFCOLD 2026 Prototype in new tab"
+          >
+            <span>Live Prototype</span>
+            <ExternalLink size={15} />
+          </a>
         </div>
       </header>
+
+      <section className="prototype-banner" aria-label="Interactive Prototype Deployment">
+        <div className="prototype-banner-left">
+          <div className="prototype-icon-badge" aria-hidden="true">
+            <ExternalLink size={20} />
+          </div>
+          <div>
+            <div className="prototype-badge-row">
+              <span className="prototype-status-tag">Live Deployment</span>
+              <span className="prototype-pill-text">REFCOLD India 2026</span>
+            </div>
+            <h2 className="prototype-headline">Explore the REFCOLD 2026 Interactive Prototype</h2>
+            <p className="prototype-desc">
+              Access the deployed prototype hosted on Vercel at{' '}
+              <a
+                href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="prototype-raw-link"
+              >
+                https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/
+              </a>
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary prototype-btn"
+          title="Open prototype in a new tab"
+        >
+          <span>Open Prototype</span>
+          <ExternalLink size={16} />
+        </a>
+      </section>
+
 
       <section className="panel kpis" aria-label="Fleet indicators">
         {kpiItems.map((k) => (
