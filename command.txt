@@ -1,0 +1,132 @@
+=====================================================================
+ CryoSense  -  commands to run the project on your PC
+ AI predictive maintenance for industrial refrigeration compressors
+=====================================================================
+
+Everything below is typed in a terminal (Command Prompt / PowerShell on
+Windows, Terminal on macOS/Linux) from inside the "cryosense" folder.
+
+
+---------------------------------------------------------------------
+ 0. ONE-TIME: check Node.js (version 18 or newer is required)
+---------------------------------------------------------------------
+node -v
+npm -v
+
+If node is missing or older than v18, install the LTS build from
+https://nodejs.org and open a new terminal.
+
+
+---------------------------------------------------------------------
+ 1. ONE-TIME: install dependencies
+---------------------------------------------------------------------
+cd cryosense
+npm run install:all
+
+(same as running these three separately)
+npm install
+cd server  &&  npm install  &&  cd ..
+cd client  &&  npm install  &&  cd ..
+
+
+---------------------------------------------------------------------
+ 2. ONE-TIME: add your Firebase credentials   (optional)
+---------------------------------------------------------------------
+The app runs without Firebase too: it falls back to an in-memory store
+and prints "in-memory storage" in the server log. Add Firebase when you
+want alerts, maintenance logs and telemetry to persist.
+
+ a. https://console.firebase.google.com  ->  Add project
+ b. Build > Firestore Database > Create database (production mode,
+    region asia-south1 Mumbai is a good choice)
+ c. Project settings (gear) > Service accounts > Generate new private key
+ d. Either
+      OPTION A: rename the downloaded file to  serviceAccountKey.json
+                and put it inside the  server  folder
+      OPTION B: open  server/.env  and paste project_id, client_email
+                and private_key into the three FIREBASE_ variables
+ e. Write the sites and compressor catalogue into Firestore:
+
+npm run seed
+
+
+---------------------------------------------------------------------
+ 3. (optional) retrain the AI models
+---------------------------------------------------------------------
+Pretrained models ship in server/models, so this is not required.
+Run it to regenerate the synthetic dataset and retrain Logistic
+Regression, Random Forest (300 trees, depth 8), Isolation Forest and
+the fault-diagnosis forest. Takes about 10 seconds.
+
+npm run train
+
+Results are written to server/models/metrics.json and shown on the
+"Model report" page.
+
+
+---------------------------------------------------------------------
+ 4. RUN IN DEVELOPMENT  (use this for the demo)
+---------------------------------------------------------------------
+npm run dev
+
+Then open   http://localhost:5173
+
+API runs on http://localhost:5000  (health check: /api/status)
+
+If you prefer two terminals instead:
+  Terminal 1:   cd server   &&  npm run dev
+  Terminal 2:   cd client   &&  npm run dev
+
+
+---------------------------------------------------------------------
+ 5. RUN AS A SINGLE PRODUCTION SERVER
+---------------------------------------------------------------------
+npm run build
+npm start
+
+Then open   http://localhost:5000
+(the Node server serves the built React app and the API together)
+
+
+---------------------------------------------------------------------
+ 6. SUGGESTED 3-MINUTE COMPETITION DEMO
+---------------------------------------------------------------------
+ 1. Overview  - fleet of 12 compressors across 4 cold-chain sites.
+    CMP-NSK-02 is already drifting (oil starvation).
+ 2. Click CMP-NSK-02 - risk gauge, model consensus, diagnosis, and the
+    "why" panel showing which sensor trends drive the prediction.
+ 3. Scenario lab - pick a healthy unit, choose "Refrigerant leak",
+    press Start scenario, set speed to 24 h per tick. Watch the lead-time clock
+    as the Random Forest raises an alert days before the trip.
+ 4. Press "Send technician" - the unit is logged as a failure
+    prevented with its lead time.
+ 5. Model report - AUC, early-warning rate, lead time, false alarms,
+    ROC curves and feature importance, reactive vs CryoSense.
+ Reset the demo any time from Scenario lab > Reset fleet.
+
+
+---------------------------------------------------------------------
+ 7. TROUBLESHOOTING
+---------------------------------------------------------------------
+"Port 5000 already in use"  (common on macOS: AirPlay Receiver)
+    change PORT in server/.env to 5050 AND
+    change VITE_PROXY_TARGET in client/.env to http://localhost:5050
+
+Screen says "Waiting for the CryoSense server"
+    the backend is not running, start it with  npm run dev
+
+"in-memory storage" in the server log although you added Firebase
+    check serviceAccountKey.json is inside /server, or that
+    FIREBASE_PRIVATE_KEY in .env is on one line in double quotes.
+    Also confirm Firestore is created in the Firebase console.
+
+"PERMISSION_DENIED" from Firestore
+    the service account needs the "Cloud Datastore User" role
+    (default keys from step 2c already have it).
+
+Fresh install after errors
+    delete node_modules folders (root, server, client) and run
+    npm run install:all
+
+Windows: if "&&" fails in old PowerShell, run each command on its
+own line.

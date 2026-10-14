@@ -1,0 +1,10 @@
+node_modules/
+dist/
+client/dist/
+server/serviceAccountKey.json
+.env
+*.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db

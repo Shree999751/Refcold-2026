@@ -1,0 +1,23 @@
+{
+  "name": "cryosense-server",
+  "version": "1.0.0",
+  "description": "CryoSense backend: predictive maintenance models, fleet simulation and Firebase persistence",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --watch src --ext js src/index.js",
+    "train": "node src/ml/train.js",
+    "seed": "node src/db/seed.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "firebase-admin": "^12.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

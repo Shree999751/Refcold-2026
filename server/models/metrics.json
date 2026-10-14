@@ -1,0 +1,1749 @@
+{
+  "trainedAt": "2026-09-22T18:06:19.919Z",
+  "durationSec": 6.5,
+  "horizonHours": 168,
+  "dataset": {
+    "units": 170,
+    "rows": {
+      "train": 27875,
+      "validation": 7308,
+      "test": 11820
+    },
+    "positiveRate": 0.0964,
+    "testUnits": {
+      "healthy": 23,
+      "failing": 20
+    },
+    "composition": [
+      {
+        "outcome": "healthy",
+        "label": "Healthy",
+        "units": 90
+      },
+      {
+        "outcome": "floodback",
+        "label": "Liquid floodback",
+        "units": 20
+      },
+      {
+        "outcome": "oil_starvation",
+        "label": "Oil starvation",
+        "units": 20
+      },
+      {
+        "outcome": "thermal_overload",
+        "label": "Thermal overload",
+        "units": 20
+      },
+      {
+        "outcome": "refrigerant_leak",
+        "label": "Refrigerant leak",
+        "units": 20
+      }
+    ],
+    "daysPerUnit": 48,
+    "sampleEveryHours": 3
+  },
+  "featureCount": 33,
+  "channels": [
+    {
+      "key": "suction_temp",
+      "label": "Suction temperature",
+      "unit": "°C",
+      "min": 3,
+      "max": 5,
+      "mean": 4,
+      "sd": 0.35
+    },
+    {
+      "key": "suction_pressure",
+      "label": "Suction pressure",
+      "unit": "kPa",
+      "min": 300,
+      "max": 340,
+      "mean": 320,
+      "sd": 7
+    },
+    {
+      "key": "discharge_temp",
+      "label": "Discharge temperature",
+      "unit": "°C",
+      "min": 70,
+      "max": 86,
+      "mean": 78,
+      "sd": 2.6
+    },
+    {
+      "key": "discharge_pressure",
+      "label": "Discharge pressure",
+      "unit": "kPa",
+      "min": 1350,
+      "max": 1550,
+      "mean": 1450,
+      "sd": 32
+    },
+    {
+      "key": "oil_pressure_delta",
+      "label": "Oil pressure differential",
+      "unit": "kPa",
+      "min": 120,
+      "max": 160,
+      "mean": 140,
+      "sd": 7
+    },
+    {
+      "key": "vibration_rms",
+      "label": "Vibration RMS",
+      "unit": "mm/s",
+      "min": 1.8,
+      "max": 2.6,
+      "mean": 2.2,
+      "sd": 0.13
+    },
+    {
+      "key": "motor_current",
+      "label": "Motor current",
+      "unit": "A",
+      "min": 17,
+      "max": 20,
+      "mean": 18.5,
+      "sd": 0.5
+    },
+    {
+      "key": "superheat",
+      "label": "Superheat",
+      "unit": "K",
+      "min": 6,
+      "max": 10,
+      "mean": 8,
+      "sd": 0.65
+    }
+  ],
+  "models": {
+    "logistic": {
+      "name": "Logistic Regression",
+      "threshold": 0.8717,
+      "alertThreshold": 0.933,
+      "precision": 0.8989,
+      "recall": 0.5795,
+      "f1": 0.7047,
+      "auc": 0.8596,
+      "confusion": {
+        "tp": 649,
+        "fp": 73,
+        "tn": 10627,
+        "fn": 471
+      },
+      "roc": [
+        {
+          "fpr": 0,
+          "tpr": 0
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.117
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.2339
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.3509
+        },
+        {
+          "fpr": 0.0003,
+          "tpr": 0.4652
+        },
+        {
+          "fpr": 0.0035,
+          "tpr": 0.5518
+        },
+        {
+          "fpr": 0.0107,
+          "tpr": 0.6
+        },
+        {
+          "fpr": 0.0205,
+          "tpr": 0.6232
+        },
+        {
+          "fpr": 0.0304,
+          "tpr": 0.6455
+        },
+        {
+          "fpr": 0.0414,
+          "tpr": 0.6571
+        },
+        {
+          "fpr": 0.0522,
+          "tpr": 0.6705
+        },
+        {
+          "fpr": 0.0633,
+          "tpr": 0.6821
+        },
+        {
+          "fpr": 0.0748,
+          "tpr": 0.6893
+        },
+        {
+          "fpr": 0.0862,
+          "tpr": 0.6973
+        },
+        {
+          "fpr": 0.0972,
+          "tpr": 0.7089
+        },
+        {
+          "fpr": 0.1086,
+          "tpr": 0.717
+        },
+        {
+          "fpr": 0.12,
+          "tpr": 0.725
+        },
+        {
+          "fpr": 0.1319,
+          "tpr": 0.7286
+        },
+        {
+          "fpr": 0.1436,
+          "tpr": 0.733
+        },
+        {
+          "fpr": 0.1548,
+          "tpr": 0.7438
+        },
+        {
+          "fpr": 0.1664,
+          "tpr": 0.75
+        },
+        {
+          "fpr": 0.1779,
+          "tpr": 0.7571
+        },
+        {
+          "fpr": 0.1893,
+          "tpr": 0.7652
+        },
+        {
+          "fpr": 0.2007,
+          "tpr": 0.7732
+        },
+        {
+          "fpr": 0.2124,
+          "tpr": 0.7777
+        },
+        {
+          "fpr": 0.2242,
+          "tpr": 0.7821
+        },
+        {
+          "fpr": 0.2357,
+          "tpr": 0.7893
+        },
+        {
+          "fpr": 0.2479,
+          "tpr": 0.7902
+        },
+        {
+          "fpr": 0.2591,
+          "tpr": 0.8
+        },
+        {
+          "fpr": 0.271,
+          "tpr": 0.8027
+        },
+        {
+          "fpr": 0.2826,
+          "tpr": 0.8089
+        },
+        {
+          "fpr": 0.2943,
+          "tpr": 0.8143
+        },
+        {
+          "fpr": 0.3062,
+          "tpr": 0.8179
+        },
+        {
+          "fpr": 0.3179,
+          "tpr": 0.8223
+        },
+        {
+          "fpr": 0.3297,
+          "tpr": 0.8268
+        },
+        {
+          "fpr": 0.3413,
+          "tpr": 0.833
+        },
+        {
+          "fpr": 0.3532,
+          "tpr": 0.8366
+        },
+        {
+          "fpr": 0.3649,
+          "tpr": 0.842
+        },
+        {
+          "fpr": 0.3767,
+          "tpr": 0.8455
+        },
+        {
+          "fpr": 0.3889,
+          "tpr": 0.8464
+        },
+        {
+          "fpr": 0.4009,
+          "tpr": 0.8482
+        },
+        {
+          "fpr": 0.4125,
+          "tpr": 0.8545
+        },
+        {
+          "fpr": 0.4247,
+          "tpr": 0.8554
+        },
+        {
+          "fpr": 0.4365,
+          "tpr": 0.8589
+        },
+        {
+          "fpr": 0.4485,
+          "tpr": 0.8616
+        },
+        {
+          "fpr": 0.4604,
+          "tpr": 0.8652
+        },
+        {
+          "fpr": 0.4722,
+          "tpr": 0.8688
+        },
+        {
+          "fpr": 0.4838,
+          "tpr": 0.875
+        },
+        {
+          "fpr": 0.4958,
+          "tpr": 0.8777
+        },
+        {
+          "fpr": 0.5077,
+          "tpr": 0.8812
+        },
+        {
+          "fpr": 0.5195,
+          "tpr": 0.8848
+        },
+        {
+          "fpr": 0.5314,
+          "tpr": 0.8884
+        },
+        {
+          "fpr": 0.5434,
+          "tpr": 0.8911
+        },
+        {
+          "fpr": 0.5554,
+          "tpr": 0.8929
+        },
+        {
+          "fpr": 0.5673,
+          "tpr": 0.8964
+        },
+        {
+          "fpr": 0.5791,
+          "tpr": 0.9009
+        },
+        {
+          "fpr": 0.5909,
+          "tpr": 0.9045
+        },
+        {
+          "fpr": 0.6029,
+          "tpr": 0.9071
+        },
+        {
+          "fpr": 0.615,
+          "tpr": 0.9089
+        },
+        {
+          "fpr": 0.6266,
+          "tpr": 0.9143
+        },
+        {
+          "fpr": 0.6387,
+          "tpr": 0.9161
+        },
+        {
+          "fpr": 0.6506,
+          "tpr": 0.9196
+        },
+        {
+          "fpr": 0.6626,
+          "tpr": 0.9214
+        },
+        {
+          "fpr": 0.6746,
+          "tpr": 0.9241
+        },
+        {
+          "fpr": 0.6866,
+          "tpr": 0.9259
+        },
+        {
+          "fpr": 0.6988,
+          "tpr": 0.9268
+        },
+        {
+          "fpr": 0.7104,
+          "tpr": 0.933
+        },
+        {
+          "fpr": 0.7223,
+          "tpr": 0.9357
+        },
+        {
+          "fpr": 0.734,
+          "tpr": 0.9411
+        },
+        {
+          "fpr": 0.746,
+          "tpr": 0.9437
+        },
+        {
+          "fpr": 0.7581,
+          "tpr": 0.9446
+        },
+        {
+          "fpr": 0.7699,
+          "tpr": 0.9491
+        },
+        {
+          "fpr": 0.782,
+          "tpr": 0.9509
+        },
+        {
+          "fpr": 0.794,
+          "tpr": 0.9527
+        },
+        {
+          "fpr": 0.806,
+          "tpr": 0.9554
+        },
+        {
+          "fpr": 0.8181,
+          "tpr": 0.9563
+        },
+        {
+          "fpr": 0.8301,
+          "tpr": 0.9589
+        },
+        {
+          "fpr": 0.8421,
+          "tpr": 0.9616
+        },
+        {
+          "fpr": 0.8539,
+          "tpr": 0.9652
+        },
+        {
+          "fpr": 0.8657,
+          "tpr": 0.9696
+        },
+        {
+          "fpr": 0.8778,
+          "tpr": 0.9714
+        },
+        {
+          "fpr": 0.8896,
+          "tpr": 0.975
+        },
+        {
+          "fpr": 0.9016,
+          "tpr": 0.9777
+        },
+        {
+          "fpr": 0.9133,
+          "tpr": 0.983
+        },
+        {
+          "fpr": 0.9254,
+          "tpr": 0.9839
+        },
+        {
+          "fpr": 0.9374,
+          "tpr": 0.9866
+        },
+        {
+          "fpr": 0.9495,
+          "tpr": 0.9875
+        },
+        {
+          "fpr": 0.9616,
+          "tpr": 0.9893
+        },
+        {
+          "fpr": 0.9734,
+          "tpr": 0.9938
+        },
+        {
+          "fpr": 0.9854,
+          "tpr": 0.9955
+        },
+        {
+          "fpr": 0.9973,
+          "tpr": 0.9991
+        },
+        {
+          "fpr": 1,
+          "tpr": 1
+        }
+      ],
+      "leadTimes": [
+        {
+          "unit": "SIM-096",
+          "mode": "floodback",
+          "leadDays": 1.8
+        },
+        {
+          "unit": "SIM-141",
+          "mode": "thermal_overload",
+          "leadDays": 2.4
+        },
+        {
+          "unit": "SIM-167",
+          "mode": "refrigerant_leak",
+          "leadDays": 4.6
+        },
+        {
+          "unit": "SIM-144",
+          "mode": "thermal_overload",
+          "leadDays": 2.3
+        },
+        {
+          "unit": "SIM-112",
+          "mode": "oil_starvation",
+          "leadDays": 5.3
+        },
+        {
+          "unit": "SIM-109",
+          "mode": "floodback",
+          "leadDays": 1.6
+        },
+        {
+          "unit": "SIM-130",
+          "mode": "oil_starvation",
+          "leadDays": 6.5
+        },
+        {
+          "unit": "SIM-106",
+          "mode": "floodback",
+          "leadDays": 4.3
+        },
+        {
+          "unit": "SIM-122",
+          "mode": "oil_starvation",
+          "leadDays": 7.3
+        },
+        {
+          "unit": "SIM-091",
+          "mode": "floodback",
+          "leadDays": 2.7
+        },
+        {
+          "unit": "SIM-128",
+          "mode": "oil_starvation",
+          "leadDays": 3.5
+        },
+        {
+          "unit": "SIM-137",
+          "mode": "thermal_overload",
+          "leadDays": 2.6
+        },
+        {
+          "unit": "SIM-134",
+          "mode": "thermal_overload",
+          "leadDays": 1.1
+        },
+        {
+          "unit": "SIM-170",
+          "mode": "refrigerant_leak",
+          "leadDays": 3.6
+        },
+        {
+          "unit": "SIM-139",
+          "mode": "thermal_overload",
+          "leadDays": 1.4
+        },
+        {
+          "unit": "SIM-104",
+          "mode": "floodback",
+          "leadDays": 5.1
+        },
+        {
+          "unit": "SIM-116",
+          "mode": "oil_starvation",
+          "leadDays": 4.1
+        },
+        {
+          "unit": "SIM-105",
+          "mode": "floodback",
+          "leadDays": 4.4
+        },
+        {
+          "unit": "SIM-115",
+          "mode": "oil_starvation",
+          "leadDays": 4.9
+        },
+        {
+          "unit": "SIM-147",
+          "mode": "thermal_overload",
+          "leadDays": 3.3
+        }
+      ],
+      "earlyWarningRate": 1,
+      "meanLeadDays": 3.64,
+      "falseAlarmsPer100Days": 0.32
+    },
+    "random_forest": {
+      "name": "Random Forest",
+      "threshold": 0.5775,
+      "alertThreshold": 0.7398,
+      "precision": 0.7819,
+      "recall": 0.6563,
+      "f1": 0.7136,
+      "auc": 0.8742,
+      "confusion": {
+        "tp": 735,
+        "fp": 205,
+        "tn": 10495,
+        "fn": 385
+      },
+      "roc": [
+        {
+          "fpr": 0,
+          "tpr": 0
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.1929
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.3116
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.4277
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.5437
+        },
+        {
+          "fpr": 0.0036,
+          "tpr": 0.625
+        },
+        {
+          "fpr": 0.0132,
+          "tpr": 0.65
+        },
+        {
+          "fpr": 0.0244,
+          "tpr": 0.6589
+        },
+        {
+          "fpr": 0.035,
+          "tpr": 0.6741
+        },
+        {
+          "fpr": 0.0455,
+          "tpr": 0.6893
+        },
+        {
+          "fpr": 0.0565,
+          "tpr": 0.7
+        },
+        {
+          "fpr": 0.0677,
+          "tpr": 0.7098
+        },
+        {
+          "fpr": 0.0791,
+          "tpr": 0.717
+        },
+        {
+          "fpr": 0.0909,
+          "tpr": 0.7196
+        },
+        {
+          "fpr": 0.1027,
+          "tpr": 0.7232
+        },
+        {
+          "fpr": 0.1145,
+          "tpr": 0.7268
+        },
+        {
+          "fpr": 0.1261,
+          "tpr": 0.7321
+        },
+        {
+          "fpr": 0.1374,
+          "tpr": 0.7402
+        },
+        {
+          "fpr": 0.1491,
+          "tpr": 0.7446
+        },
+        {
+          "fpr": 0.161,
+          "tpr": 0.7464
+        },
+        {
+          "fpr": 0.1726,
+          "tpr": 0.7518
+        },
+        {
+          "fpr": 0.1841,
+          "tpr": 0.758
+        },
+        {
+          "fpr": 0.1958,
+          "tpr": 0.7625
+        },
+        {
+          "fpr": 0.2075,
+          "tpr": 0.767
+        },
+        {
+          "fpr": 0.2191,
+          "tpr": 0.7723
+        },
+        {
+          "fpr": 0.2307,
+          "tpr": 0.7768
+        },
+        {
+          "fpr": 0.2421,
+          "tpr": 0.7839
+        },
+        {
+          "fpr": 0.2535,
+          "tpr": 0.792
+        },
+        {
+          "fpr": 0.2643,
+          "tpr": 0.8045
+        },
+        {
+          "fpr": 0.2756,
+          "tpr": 0.8125
+        },
+        {
+          "fpr": 0.2875,
+          "tpr": 0.8152
+        },
+        {
+          "fpr": 0.2991,
+          "tpr": 0.8205
+        },
+        {
+          "fpr": 0.3107,
+          "tpr": 0.825
+        },
+        {
+          "fpr": 0.3224,
+          "tpr": 0.8295
+        },
+        {
+          "fpr": 0.3341,
+          "tpr": 0.8339
+        },
+        {
+          "fpr": 0.3454,
+          "tpr": 0.842
+        },
+        {
+          "fpr": 0.3568,
+          "tpr": 0.8491
+        },
+        {
+          "fpr": 0.3681,
+          "tpr": 0.8571
+        },
+        {
+          "fpr": 0.38,
+          "tpr": 0.8598
+        },
+        {
+          "fpr": 0.392,
+          "tpr": 0.8616
+        },
+        {
+          "fpr": 0.4038,
+          "tpr": 0.8643
+        },
+        {
+          "fpr": 0.4159,
+          "tpr": 0.8652
+        },
+        {
+          "fpr": 0.4276,
+          "tpr": 0.8696
+        },
+        {
+          "fpr": 0.4395,
+          "tpr": 0.8714
+        },
+        {
+          "fpr": 0.451,
+          "tpr": 0.8777
+        },
+        {
+          "fpr": 0.4627,
+          "tpr": 0.8821
+        },
+        {
+          "fpr": 0.4745,
+          "tpr": 0.8857
+        },
+        {
+          "fpr": 0.4865,
+          "tpr": 0.8866
+        },
+        {
+          "fpr": 0.4984,
+          "tpr": 0.8893
+        },
+        {
+          "fpr": 0.5105,
+          "tpr": 0.8902
+        },
+        {
+          "fpr": 0.5223,
+          "tpr": 0.8929
+        },
+        {
+          "fpr": 0.5339,
+          "tpr": 0.8982
+        },
+        {
+          "fpr": 0.5458,
+          "tpr": 0.9009
+        },
+        {
+          "fpr": 0.5578,
+          "tpr": 0.9027
+        },
+        {
+          "fpr": 0.5693,
+          "tpr": 0.908
+        },
+        {
+          "fpr": 0.5811,
+          "tpr": 0.9116
+        },
+        {
+          "fpr": 0.593,
+          "tpr": 0.9143
+        },
+        {
+          "fpr": 0.6045,
+          "tpr": 0.9205
+        },
+        {
+          "fpr": 0.6164,
+          "tpr": 0.9232
+        },
+        {
+          "fpr": 0.6277,
+          "tpr": 0.9313
+        },
+        {
+          "fpr": 0.6394,
+          "tpr": 0.9348
+        },
+        {
+          "fpr": 0.6511,
+          "tpr": 0.9393
+        },
+        {
+          "fpr": 0.6629,
+          "tpr": 0.9429
+        },
+        {
+          "fpr": 0.675,
+          "tpr": 0.9437
+        },
+        {
+          "fpr": 0.6865,
+          "tpr": 0.9491
+        },
+        {
+          "fpr": 0.698,
+          "tpr": 0.9554
+        },
+        {
+          "fpr": 0.7096,
+          "tpr": 0.9607
+        },
+        {
+          "fpr": 0.7213,
+          "tpr": 0.9652
+        },
+        {
+          "fpr": 0.733,
+          "tpr": 0.9696
+        },
+        {
+          "fpr": 0.7448,
+          "tpr": 0.9732
+        },
+        {
+          "fpr": 0.7569,
+          "tpr": 0.9732
+        },
+        {
+          "fpr": 0.769,
+          "tpr": 0.9741
+        },
+        {
+          "fpr": 0.7806,
+          "tpr": 0.9795
+        },
+        {
+          "fpr": 0.7925,
+          "tpr": 0.9812
+        },
+        {
+          "fpr": 0.8046,
+          "tpr": 0.9821
+        },
+        {
+          "fpr": 0.8164,
+          "tpr": 0.9857
+        },
+        {
+          "fpr": 0.8283,
+          "tpr": 0.9875
+        },
+        {
+          "fpr": 0.8401,
+          "tpr": 0.9911
+        },
+        {
+          "fpr": 0.8521,
+          "tpr": 0.9929
+        },
+        {
+          "fpr": 0.8641,
+          "tpr": 0.9938
+        },
+        {
+          "fpr": 0.8762,
+          "tpr": 0.9946
+        },
+        {
+          "fpr": 0.8881,
+          "tpr": 0.9964
+        },
+        {
+          "fpr": 0.9003,
+          "tpr": 0.9964
+        },
+        {
+          "fpr": 0.9124,
+          "tpr": 0.9964
+        },
+        {
+          "fpr": 0.9246,
+          "tpr": 0.9964
+        },
+        {
+          "fpr": 0.9366,
+          "tpr": 0.9973
+        },
+        {
+          "fpr": 0.9488,
+          "tpr": 0.9973
+        },
+        {
+          "fpr": 0.9609,
+          "tpr": 0.9973
+        },
+        {
+          "fpr": 0.9729,
+          "tpr": 0.9991
+        },
+        {
+          "fpr": 0.985,
+          "tpr": 1
+        },
+        {
+          "fpr": 0.9971,
+          "tpr": 1
+        },
+        {
+          "fpr": 1,
+          "tpr": 1
+        }
+      ],
+      "leadTimes": [
+        {
+          "unit": "SIM-096",
+          "mode": "floodback",
+          "leadDays": 2
+        },
+        {
+          "unit": "SIM-141",
+          "mode": "thermal_overload",
+          "leadDays": 2.4
+        },
+        {
+          "unit": "SIM-167",
+          "mode": "refrigerant_leak",
+          "leadDays": 5.1
+        },
+        {
+          "unit": "SIM-144",
+          "mode": "thermal_overload",
+          "leadDays": 4
+        },
+        {
+          "unit": "SIM-112",
+          "mode": "oil_starvation",
+          "leadDays": 5.7
+        },
+        {
+          "unit": "SIM-109",
+          "mode": "floodback",
+          "leadDays": 2
+        },
+        {
+          "unit": "SIM-130",
+          "mode": "oil_starvation",
+          "leadDays": 6.4
+        },
+        {
+          "unit": "SIM-106",
+          "mode": "floodback",
+          "leadDays": 4
+        },
+        {
+          "unit": "SIM-122",
+          "mode": "oil_starvation",
+          "leadDays": 6.3
+        },
+        {
+          "unit": "SIM-091",
+          "mode": "floodback",
+          "leadDays": 3.3
+        },
+        {
+          "unit": "SIM-128",
+          "mode": "oil_starvation",
+          "leadDays": 4.7
+        },
+        {
+          "unit": "SIM-137",
+          "mode": "thermal_overload",
+          "leadDays": 3.6
+        },
+        {
+          "unit": "SIM-134",
+          "mode": "thermal_overload",
+          "leadDays": 1.1
+        },
+        {
+          "unit": "SIM-170",
+          "mode": "refrigerant_leak",
+          "leadDays": 4.5
+        },
+        {
+          "unit": "SIM-139",
+          "mode": "thermal_overload",
+          "leadDays": 8.1
+        },
+        {
+          "unit": "SIM-104",
+          "mode": "floodback",
+          "leadDays": 6.5
+        },
+        {
+          "unit": "SIM-116",
+          "mode": "oil_starvation",
+          "leadDays": 4.2
+        },
+        {
+          "unit": "SIM-105",
+          "mode": "floodback",
+          "leadDays": 5.5
+        },
+        {
+          "unit": "SIM-115",
+          "mode": "oil_starvation",
+          "leadDays": 5.3
+        },
+        {
+          "unit": "SIM-147",
+          "mode": "thermal_overload",
+          "leadDays": 4.3
+        }
+      ],
+      "earlyWarningRate": 1,
+      "meanLeadDays": 4.45,
+      "falseAlarmsPer100Days": 0.32
+    },
+    "isolation_forest": {
+      "name": "Isolation Forest",
+      "threshold": 0.5414,
+      "alertThreshold": 0.5829,
+      "precision": 0.7545,
+      "recall": 0.5625,
+      "f1": 0.6445,
+      "auc": 0.8774,
+      "confusion": {
+        "tp": 630,
+        "fp": 205,
+        "tn": 10495,
+        "fn": 490
+      },
+      "roc": [
+        {
+          "fpr": 0,
+          "tpr": 0
+        },
+        {
+          "fpr": 0,
+          "tpr": 0.1187
+        },
+        {
+          "fpr": 0.0005,
+          "tpr": 0.2313
+        },
+        {
+          "fpr": 0.0022,
+          "tpr": 0.3312
+        },
+        {
+          "fpr": 0.0053,
+          "tpr": 0.4188
+        },
+        {
+          "fpr": 0.0103,
+          "tpr": 0.4884
+        },
+        {
+          "fpr": 0.0164,
+          "tpr": 0.5473
+        },
+        {
+          "fpr": 0.025,
+          "tpr": 0.5821
+        },
+        {
+          "fpr": 0.0333,
+          "tpr": 0.6196
+        },
+        {
+          "fpr": 0.0432,
+          "tpr": 0.642
+        },
+        {
+          "fpr": 0.0537,
+          "tpr": 0.658
+        },
+        {
+          "fpr": 0.0643,
+          "tpr": 0.6741
+        },
+        {
+          "fpr": 0.0752,
+          "tpr": 0.6866
+        },
+        {
+          "fpr": 0.0857,
+          "tpr": 0.7036
+        },
+        {
+          "fpr": 0.0969,
+          "tpr": 0.7134
+        },
+        {
+          "fpr": 0.1079,
+          "tpr": 0.725
+        },
+        {
+          "fpr": 0.1187,
+          "tpr": 0.7393
+        },
+        {
+          "fpr": 0.13,
+          "tpr": 0.7482
+        },
+        {
+          "fpr": 0.1416,
+          "tpr": 0.7545
+        },
+        {
+          "fpr": 0.153,
+          "tpr": 0.7625
+        },
+        {
+          "fpr": 0.1638,
+          "tpr": 0.7759
+        },
+        {
+          "fpr": 0.1751,
+          "tpr": 0.7848
+        },
+        {
+          "fpr": 0.1867,
+          "tpr": 0.7911
+        },
+        {
+          "fpr": 0.1983,
+          "tpr": 0.7973
+        },
+        {
+          "fpr": 0.2094,
+          "tpr": 0.808
+        },
+        {
+          "fpr": 0.2211,
+          "tpr": 0.8134
+        },
+        {
+          "fpr": 0.2325,
+          "tpr": 0.8214
+        },
+        {
+          "fpr": 0.2441,
+          "tpr": 0.8277
+        },
+        {
+          "fpr": 0.2558,
+          "tpr": 0.833
+        },
+        {
+          "fpr": 0.2671,
+          "tpr": 0.842
+        },
+        {
+          "fpr": 0.2791,
+          "tpr": 0.8446
+        },
+        {
+          "fpr": 0.2908,
+          "tpr": 0.8491
+        },
+        {
+          "fpr": 0.3022,
+          "tpr": 0.8571
+        },
+        {
+          "fpr": 0.3138,
+          "tpr": 0.8634
+        },
+        {
+          "fpr": 0.3255,
+          "tpr": 0.8688
+        },
+        {
+          "fpr": 0.3373,
+          "tpr": 0.8732
+        },
+        {
+          "fpr": 0.3493,
+          "tpr": 0.8759
+        },
+        {
+          "fpr": 0.3611,
+          "tpr": 0.8795
+        },
+        {
+          "fpr": 0.3727,
+          "tpr": 0.8857
+        },
+        {
+          "fpr": 0.3849,
+          "tpr": 0.8866
+        },
+        {
+          "fpr": 0.3968,
+          "tpr": 0.8893
+        },
+        {
+          "fpr": 0.4089,
+          "tpr": 0.8911
+        },
+        {
+          "fpr": 0.4207,
+          "tpr": 0.8955
+        },
+        {
+          "fpr": 0.4326,
+          "tpr": 0.8982
+        },
+        {
+          "fpr": 0.4443,
+          "tpr": 0.9036
+        },
+        {
+          "fpr": 0.4562,
+          "tpr": 0.9071
+        },
+        {
+          "fpr": 0.468,
+          "tpr": 0.9107
+        },
+        {
+          "fpr": 0.4799,
+          "tpr": 0.9143
+        },
+        {
+          "fpr": 0.492,
+          "tpr": 0.9161
+        },
+        {
+          "fpr": 0.5039,
+          "tpr": 0.9187
+        },
+        {
+          "fpr": 0.516,
+          "tpr": 0.9205
+        },
+        {
+          "fpr": 0.5279,
+          "tpr": 0.9232
+        },
+        {
+          "fpr": 0.54,
+          "tpr": 0.925
+        },
+        {
+          "fpr": 0.5521,
+          "tpr": 0.9259
+        },
+        {
+          "fpr": 0.5644,
+          "tpr": 0.9259
+        },
+        {
+          "fpr": 0.5765,
+          "tpr": 0.9268
+        },
+        {
+          "fpr": 0.5886,
+          "tpr": 0.9286
+        },
+        {
+          "fpr": 0.6007,
+          "tpr": 0.9304
+        },
+        {
+          "fpr": 0.6128,
+          "tpr": 0.9313
+        },
+        {
+          "fpr": 0.6248,
+          "tpr": 0.9339
+        },
+        {
+          "fpr": 0.6369,
+          "tpr": 0.9348
+        },
+        {
+          "fpr": 0.6489,
+          "tpr": 0.9375
+        },
+        {
+          "fpr": 0.661,
+          "tpr": 0.9384
+        },
+        {
+          "fpr": 0.6733,
+          "tpr": 0.9384
+        },
+        {
+          "fpr": 0.6854,
+          "tpr": 0.9393
+        },
+        {
+          "fpr": 0.6975,
+          "tpr": 0.9411
+        },
+        {
+          "fpr": 0.7093,
+          "tpr": 0.9446
+        },
+        {
+          "fpr": 0.7214,
+          "tpr": 0.9464
+        },
+        {
+          "fpr": 0.7333,
+          "tpr": 0.95
+        },
+        {
+          "fpr": 0.7449,
+          "tpr": 0.9563
+        },
+        {
+          "fpr": 0.7569,
+          "tpr": 0.958
+        },
+        {
+          "fpr": 0.769,
+          "tpr": 0.9598
+        },
+        {
+          "fpr": 0.7809,
+          "tpr": 0.9625
+        },
+        {
+          "fpr": 0.7929,
+          "tpr": 0.9652
+        },
+        {
+          "fpr": 0.805,
+          "tpr": 0.9661
+        },
+        {
+          "fpr": 0.8171,
+          "tpr": 0.9679
+        },
+        {
+          "fpr": 0.8289,
+          "tpr": 0.9723
+        },
+        {
+          "fpr": 0.841,
+          "tpr": 0.9732
+        },
+        {
+          "fpr": 0.8532,
+          "tpr": 0.9741
+        },
+        {
+          "fpr": 0.8651,
+          "tpr": 0.9768
+        },
+        {
+          "fpr": 0.8771,
+          "tpr": 0.9795
+        },
+        {
+          "fpr": 0.8892,
+          "tpr": 0.9812
+        },
+        {
+          "fpr": 0.9014,
+          "tpr": 0.9812
+        },
+        {
+          "fpr": 0.9136,
+          "tpr": 0.9812
+        },
+        {
+          "fpr": 0.9255,
+          "tpr": 0.9848
+        },
+        {
+          "fpr": 0.9374,
+          "tpr": 0.9884
+        },
+        {
+          "fpr": 0.9493,
+          "tpr": 0.9911
+        },
+        {
+          "fpr": 0.9614,
+          "tpr": 0.9929
+        },
+        {
+          "fpr": 0.9736,
+          "tpr": 0.9938
+        },
+        {
+          "fpr": 0.9856,
+          "tpr": 0.9955
+        },
+        {
+          "fpr": 0.9975,
+          "tpr": 0.9991
+        },
+        {
+          "fpr": 1,
+          "tpr": 1
+        }
+      ],
+      "leadTimes": [
+        {
+          "unit": "SIM-096",
+          "mode": "floodback",
+          "leadDays": 1.1
+        },
+        {
+          "unit": "SIM-141",
+          "mode": "thermal_overload",
+          "leadDays": 2.8
+        },
+        {
+          "unit": "SIM-167",
+          "mode": "refrigerant_leak",
+          "leadDays": 4.5
+        },
+        {
+          "unit": "SIM-144",
+          "mode": "thermal_overload",
+          "leadDays": 1.3
+        },
+        {
+          "unit": "SIM-112",
+          "mode": "oil_starvation",
+          "leadDays": 2.5
+        },
+        {
+          "unit": "SIM-109",
+          "mode": "floodback",
+          "leadDays": 1
+        },
+        {
+          "unit": "SIM-130",
+          "mode": "oil_starvation",
+          "leadDays": 3.5
+        },
+        {
+          "unit": "SIM-106",
+          "mode": "floodback",
+          "leadDays": 3
+        },
+        {
+          "unit": "SIM-122",
+          "mode": "oil_starvation",
+          "leadDays": 9.8
+        },
+        {
+          "unit": "SIM-091",
+          "mode": "floodback",
+          "leadDays": 1
+        },
+        {
+          "unit": "SIM-128",
+          "mode": "oil_starvation",
+          "leadDays": 2.3
+        },
+        {
+          "unit": "SIM-137",
+          "mode": "thermal_overload",
+          "leadDays": 3.5
+        },
+        {
+          "unit": "SIM-134",
+          "mode": "thermal_overload",
+          "leadDays": 1.1
+        },
+        {
+          "unit": "SIM-170",
+          "mode": "refrigerant_leak",
+          "leadDays": 3.6
+        },
+        {
+          "unit": "SIM-139",
+          "mode": "thermal_overload",
+          "leadDays": 8.4
+        },
+        {
+          "unit": "SIM-104",
+          "mode": "floodback",
+          "leadDays": 4.8
+        },
+        {
+          "unit": "SIM-116",
+          "mode": "oil_starvation",
+          "leadDays": 2
+        },
+        {
+          "unit": "SIM-105",
+          "mode": "floodback",
+          "leadDays": 4
+        },
+        {
+          "unit": "SIM-115",
+          "mode": "oil_starvation",
+          "leadDays": 3.2
+        },
+        {
+          "unit": "SIM-147",
+          "mode": "thermal_overload",
+          "leadDays": 4.6
+        }
+      ],
+      "earlyWarningRate": 1,
+      "meanLeadDays": 3.4,
+      "falseAlarmsPer100Days": 1.06
+    }
+  },
+  "diagnosis": {
+    "accuracy": 0.7661,
+    "classes": [
+      "floodback",
+      "oil_starvation",
+      "thermal_overload",
+      "refrigerant_leak"
+    ]
+  },
+  "importances": [
+    {
+      "feature": "vibration_rms_roll7_slope",
+      "importance": 0.151
+    },
+    {
+      "feature": "vibration_rms",
+      "importance": 0.0939
+    },
+    {
+      "feature": "vibration_rms_roll3_mean",
+      "importance": 0.0802
+    },
+    {
+      "feature": "superheat",
+      "importance": 0.0596
+    },
+    {
+      "feature": "superheat_roll7_slope",
+      "importance": 0.0572
+    },
+    {
+      "feature": "suction_pressure_roll7_slope",
+      "importance": 0.0534
+    },
+    {
+      "feature": "vibration_rms_roll7_mean",
+      "importance": 0.0362
+    },
+    {
+      "feature": "suction_pressure",
+      "importance": 0.0355
+    },
+    {
+      "feature": "superheat_roll3_mean",
+      "importance": 0.0343
+    },
+    {
+      "feature": "oil_pressure_delta_roll7_slope",
+      "importance": 0.0302
+    },
+    {
+      "feature": "suction_temp_roll7_slope",
+      "importance": 0.0296
+    },
+    {
+      "feature": "suction_temp_roll7_mean",
+      "importance": 0.0294
+    },
+    {
+      "feature": "suction_temp_roll3_mean",
+      "importance": 0.0277
+    },
+    {
+      "feature": "motor_current_roll3_mean",
+      "importance": 0.024
+    },
+    {
+      "feature": "motor_current_roll7_mean",
+      "importance": 0.0225
+    },
+    {
+      "feature": "oil_pressure_delta",
+      "importance": 0.0215
+    },
+    {
+      "feature": "discharge_temp",
+      "importance": 0.0173
+    },
+    {
+      "feature": "superheat_roll7_mean",
+      "importance": 0.0152
+    },
+    {
+      "feature": "discharge_temp_roll7_slope",
+      "importance": 0.0149
+    },
+    {
+      "feature": "pressure_ratio",
+      "importance": 0.0146
+    },
+    {
+      "feature": "motor_current_roll7_slope",
+      "importance": 0.0144
+    },
+    {
+      "feature": "suction_temp",
+      "importance": 0.0143
+    },
+    {
+      "feature": "oil_pressure_delta_roll7_mean",
+      "importance": 0.0134
+    },
+    {
+      "feature": "oil_pressure_delta_roll3_mean",
+      "importance": 0.0132
+    },
+    {
+      "feature": "suction_pressure_roll3_mean",
+      "importance": 0.0131
+    },
+    {
+      "feature": "discharge_temp_roll3_mean",
+      "importance": 0.0131
+    },
+    {
+      "feature": "motor_current",
+      "importance": 0.0119
+    },
+    {
+      "feature": "discharge_temp_roll7_mean",
+      "importance": 0.0118
+    },
+    {
+      "feature": "suction_pressure_roll7_mean",
+      "importance": 0.0111
+    },
+    {
+      "feature": "discharge_pressure_roll3_mean",
+      "importance": 0.0101
+    },
+    {
+      "feature": "discharge_pressure_roll7_mean",
+      "importance": 0.0088
+    },
+    {
+      "feature": "discharge_pressure_roll7_slope",
+      "importance": 0.0088
+    },
+    {
+      "feature": "discharge_pressure",
+      "importance": 0.0077
+    }
+  ],
+  "impact": {
+    "reactive": {
+      "earlyWarningRate": 0,
+      "meanLeadDays": 0,
+      "falseAlarmsPer100Days": 0
+    },
+    "predictive": {
+      "earlyWarningRate": 1,
+      "meanLeadDays": 4.45,
+      "falseAlarmsPer100Days": 0.32
+    }
+  }
+}
