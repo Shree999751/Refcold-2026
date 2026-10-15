@@ -25,7 +25,11 @@ async function main() {
   fleet.setMaxListeners(100);
 
   const app = express();
-  app.use(cors({ origin: config.clientOrigin.split(',').map((s) => s.trim()) }));
+  const corsOrigin =
+    config.clientOrigin === '*'
+      ? true
+      : config.clientOrigin.split(',').map((s) => s.trim());
+  app.use(cors({ origin: corsOrigin }));
   app.use(express.json({ limit: '100kb' }));
   app.use('/api', createApiRouter({ fleet, store, engine }));
 
