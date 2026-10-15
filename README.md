@@ -2,7 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://refcold-2026.onrender.com/)
 
-> 🚀 **Live Demo:** [CryoSense | Compressor health](https://refcold-2026.onrender.com/)
+> 🚀 **Live Demo:** <a href="https://refcold-2026.onrender.com/"><strong>CryoSense | Compressor health</strong></a> &mdash; [https://refcold-2026.onrender.com/](https://refcold-2026.onrender.com/)
 
 **AI predictive maintenance for industrial refrigeration compressors.**
 A working implementation of the REFCOLD India 2026 poster *AI Driven Predictive
