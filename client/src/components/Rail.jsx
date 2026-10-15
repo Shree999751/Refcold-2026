@@ -47,12 +47,12 @@ export default function Rail() {
       </nav>
       <div className="rail-foot">
         <a
-          href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+          href="https://refcold-2026.onrender.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="rail-btn"
           style={{ textDecoration: 'none' }}
-          title="Open REFCOLD 2026 Prototype in new tab"
+          title="Open CryoSense | Compressor health in new tab"
         >
           <ExternalLink size={16} />
           <span className="label">Live Prototype</span>

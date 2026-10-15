@@ -72,11 +72,11 @@ export default function Overview() {
             </div>
           </div>
           <a
-            href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+            href="https://refcold-2026.onrender.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary hero-prototype-cta"
-            title="Open REFCOLD 2026 Prototype in new tab"
+            title="Open CryoSense | Compressor health in new tab"
           >
             <span>Live Prototype</span>
             <ExternalLink size={15} />
@@ -96,20 +96,20 @@ export default function Overview() {
             </div>
             <h2 className="prototype-headline">Explore the REFCOLD 2026 Interactive Prototype</h2>
             <p className="prototype-desc">
-              Access the deployed prototype hosted on Vercel at{' '}
+              Access the deployed prototype at{' '}
               <a
-                href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+                href="https://refcold-2026.onrender.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="prototype-raw-link"
               >
-                https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/
+                CryoSense | Compressor health
               </a>
             </p>
           </div>
         </div>
         <a
-          href="https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/"
+          href="https://refcold-2026.onrender.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary prototype-btn"

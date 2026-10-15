@@ -1,8 +1,8 @@
 # CryoSense
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-0070f3?style=for-the-badge&logo=vercel&logoColor=white)](https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://refcold-2026.onrender.com/)
 
-> 🚀 **Live Demo:** [https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/](https://refcold-2026-8kvwu24ln-shreyansh21.vercel.app/)
+> 🚀 **Live Demo:** [CryoSense | Compressor health](https://refcold-2026.onrender.com/)
 
 **AI predictive maintenance for industrial refrigeration compressors.**
 A working implementation of the REFCOLD India 2026 poster *AI Driven Predictive
