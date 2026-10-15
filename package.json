@@ -8,7 +8,7 @@
     "dev": "concurrently -k -n server,client -c cyan,yellow \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "train": "npm run train --prefix server",
     "seed": "npm run seed --prefix server",
-    "build": "npm run build --prefix client",
+    "build": "npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client",
     "start": "npm start --prefix server"
   },
   "devDependencies": {

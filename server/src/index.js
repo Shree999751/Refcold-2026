@@ -35,8 +35,26 @@ async function main() {
 
   // Serve the production build of the React client if it exists.
   if (fs.existsSync(config.clientDist)) {
+    console.log(`[server] Serving static client from: ${config.clientDist}`);
     app.use(express.static(config.clientDist));
-    app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(config.clientDist, 'index.html')));
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api')) return next();
+      res.sendFile(path.join(config.clientDist, 'index.html'));
+    });
+  } else {
+    console.warn(`[server] Client dist not found at: ${config.clientDist}`);
+    app.get('/', (req, res) => {
+      res.json({
+        service: 'CryoSense API',
+        status: 'online',
+        message: 'Frontend build not found. Run npm run build to generate client/dist.',
+        endpoints: {
+          status: '/api/status',
+          fleet: '/api/fleet',
+          alerts: '/api/alerts'
+        }
+      });
+    });
   }
 
   app.listen(config.port, () => {
